@@ -1,4 +1,9 @@
+# config file
 .vscode
+
 *.exe
 *.class
+
+# temp file
+tempCodeRunnerFile.js
 test.*
