@@ -50,12 +50,13 @@ Function.prototype.myApply = function (context = window, args) {
             4. 返回新对象
 */
 
-Function.prototype.myNew = function () {
+function myNew() {
     let obj = {};
     let Constructor = [].shift.call(arguments); // 把第一个参数（构造函数名）弹出
     obj._proto_ = Constructor.prototype; // 链接原型
-    let ret = Constructor.apply(obj, arguments); // 执行构造函数（此时 arguments 里面只有剩余的参数了），并将 this 指向空的 obj 对象
-    return typeof ret === 'object' ? ret : obj;// 如果是一个对象，就返回这个对象，如果没有，该返回什么就返回什么。
+    let result = Constructor.apply(obj, arguments); // 执行构造函数（此时 arguments 里面只有剩余的参数了），并将 this 指向空的 obj 对象
+    return result instanceof Object ? result : obj;// 如果是一个对象，就返回这个对象，如果没有，该返回什么就返回什么。
+    // return obj;
 }
 
 /* 
@@ -90,11 +91,9 @@ const XY = {
     return this.x;
   }
 }
-
 const unboundGetX = XY.getX;
-console.log(unboundGetX()); // The function gets invoked at the global scope
 // expected output: undefined
-
+console.log(unboundGetX()); // The function gets invoked at the global scope
 const boundGetX = unboundGetX.myBind(XY);
-console.log(boundGetX());
 // expected output: 42
+console.log(boundGetX()); 
