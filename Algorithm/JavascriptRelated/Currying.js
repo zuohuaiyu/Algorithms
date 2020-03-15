@@ -21,5 +21,18 @@ function currying(fn, ...args) {
   }
 }
 
-var myURL2 = currying(simpleURL, "https", "github.com");
-console.log(myURL2("harry"));
+function uncurrying(fn) {
+  return function(...args) {
+    var ret = fn;
+
+    for (let i = 0; i < args.length; i++) {
+      ret = ret(args[i]); // 反复调用currying版本的函数
+    }
+
+    return ret; // 返回结果
+  };
+}
+
+var curryURL = currying(simpleURL, "https", "github.com");
+var uncurryURL = uncurrying(myURL2);
+console.log(uncurryURL("harry"));
