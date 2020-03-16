@@ -7,38 +7,38 @@
         5. 调用函数后即删除该Symbol属性
 */
 
-Function.prototype.myCall = function(context = window, ...args){
-    if(this != Function.prototype){
-        return undefined;
-    }
-    context = context || window;
-    const fn = Symbol();
-    context[fn] = this; 
-    const result = context[fn](...args);
-    delete(context[fn]);
-    return result;
-}
+Function.prototype.myCall = function(context = window, ...args) {
+  if (this != Function.prototype) {
+    return undefined;
+  }
+  context = context || window;
+  const fn = Symbol();
+  context[fn] = this;
+  const result = context[fn](...args);
+  delete context[fn];
+  return result;
+};
 
 /* 
     实现 apply
     和 call 类似，不过参数是数组    
 */
-Function.prototype.myApply = function (context = window, args) {
-    if(this != Function.prototype){
-        return undefined;
-    }
-    context = context || window;
-    const fn = Symbol();
-    context[fn] = this;
-    let result;
-    if(Array.isArray(args)){
-        result = context[fn](...args);
-    }else{
-        result = context[fn]();
-    }
-    delete(context[fn]);
-    return result;
-}
+Function.prototype.myApply = function(context = window, args) {
+  if (this != Function.prototype) {
+    return undefined;
+  }
+  context = context || window;
+  const fn = Symbol();
+  context[fn] = this;
+  let result;
+  if (Array.isArray(args)) {
+    result = context[fn](...args);
+  } else {
+    result = context[fn]();
+  }
+  delete context[fn];
+  return result;
+};
 
 /* 
     new 实现：
@@ -51,12 +51,12 @@ Function.prototype.myApply = function (context = window, args) {
 */
 
 function myNew() {
-    let obj = {};
-    let Constructor = [].shift.call(arguments); // 把第一个参数（构造函数名）弹出
-    obj._proto_ = Constructor.prototype; // 链接原型
-    let result = Constructor.apply(obj, arguments); // 执行构造函数（此时 arguments 里面只有剩余的参数了），并将 this 指向空的 obj 对象
-    return result instanceof Object ? result : obj;// 如果是一个对象，就返回这个对象，如果没有，该返回什么就返回什么。
-    // return obj;
+  let obj = {};
+  let Constructor = [].shift.call(arguments); // 把第一个参数（构造函数名）弹出
+  obj._proto_ = Constructor.prototype; // 链接原型
+  let result = Constructor.apply(obj, arguments); // 执行构造函数（此时 arguments 里面只有剩余的参数了），并将 this 指向空的 obj 对象
+  return result instanceof Object ? result : obj; // 如果是一个对象，就返回这个对象，如果没有，该返回什么就返回什么。
+  // return obj;
 }
 
 /* 
@@ -71,29 +71,29 @@ function myNew() {
         3.如果不是，使用apply，将context和处理好的参数传入
 */
 
-Function.prototype.myBind = function (context,...args1) {
-    if (this === Function.prototype) {
-        throw new TypeError('Error');
+Function.prototype.myBind = function(context, ...args1) {
+  if (this === Function.prototype) {
+    throw new TypeError("Error");
+  }
+  const _this = this;
+  return function F(...args2) {
+    // 判断是否用于构造函数
+    if (this instanceof F) {
+      return new _this(...args1, ...args2);
     }
-    const _this = this;
-    return function F(...args2) {
-        // 判断是否用于构造函数
-        if (this instanceof F) {
-            return new _this(...args1, ...args2);
-        }
-        return _this.apply(context, args1.concat(args2));
-    }
-}
+    return _this.apply(context, args1.concat(args2));
+  };
+};
 
 const XY = {
   x: 42,
   getX: function() {
     return this.x;
   }
-}
+};
 const unboundGetX = XY.getX;
 // expected output: undefined
 console.log(unboundGetX()); // The function gets invoked at the global scope
 const boundGetX = unboundGetX.myBind(XY);
 // expected output: 42
-console.log(boundGetX()); 
+console.log(boundGetX());
