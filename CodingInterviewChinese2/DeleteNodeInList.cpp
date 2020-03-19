@@ -1,3 +1,9 @@
+/* 
+    删除链表中的节点
+        1. 给定删除节点的值
+        2. 给定删除节点的指针
+ */
+
 #include <stdio.h>
 // #include <stdlib.h> // delete()
 using namespace std;

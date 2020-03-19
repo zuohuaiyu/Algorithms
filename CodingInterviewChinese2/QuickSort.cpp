@@ -7,13 +7,6 @@ int RandomInRange(int start, int end)
     return randNum;
 }
 
-void Swap(int a, int b)
-{
-    a ^= b;
-    a ^= b;
-    a ^= b;
-}
-
 int Partition(int data[], int start, int end, int length)
 {
     if (data == NULL || start < 0 || end >= length || length <= 0)
