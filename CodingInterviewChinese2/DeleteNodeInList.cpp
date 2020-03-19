@@ -119,7 +119,7 @@ int main()
     int arr[] = {2, 7, 6, 9, 5, 4, 3};
     int len = sizeof(arr) / sizeof(arr[0]);
     ListNode *L = creatList(arr, len);
-    
+
     L = deleteNode(L, 3);
     printList(L);
 

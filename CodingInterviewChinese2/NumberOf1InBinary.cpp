@@ -78,5 +78,5 @@ int main()
     cout << NumberOf1(numbers) << endl;
     cout << NumberOf1_2(numbers) << endl;
     cout << IsIntegerPowerOf2(numbers) << endl;
-    cout << NumberDiffOf1(5,4) << endl;
+    cout << NumberDiffOf1(5, 4) << endl;
 }

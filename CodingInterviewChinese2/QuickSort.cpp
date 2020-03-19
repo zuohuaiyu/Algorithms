@@ -20,10 +20,10 @@ int Partition(int data[], int start, int end, int length)
     int smallNumIndex = -1;
     for (int i = start; i < end; ++i)
     {
-        if (data[i] < data[end]) 
-        {    
+        if (data[i] < data[end])
+        {
             ++smallNumIndex;
-            if(i != smallNumIndex)
+            if (i != smallNumIndex)
                 swap(data[i], data[smallNumIndex]);
         }
     }
@@ -42,9 +42,11 @@ int LowPartition(int data[], int start, int end, int length)
     int temp = data[start];
     while (start < end)
     {
-        while(start < end && data[start] > temp) --end;
+        while (start < end && data[start] > temp)
+            --end;
         data[start] = data[end];
-        while(start < end && data[start] <= temp) ++start;
+        while (start < end && data[start] <= temp)
+            ++start;
         data[end] = data[start];
     }
     data[start] = temp;
@@ -53,20 +55,21 @@ int LowPartition(int data[], int start, int end, int length)
 
 void QuickSort(int data[], int start, int end, int length)
 {
-    if (start == end) 
+    if (start == end)
         return;
     int index = LowPartition(data, start, end, length);
-    if(index > start)
+    if (index > start)
         QuickSort(data, start, index - 1, length);
-    if(index < end)
+    if (index < end)
         QuickSort(data, index + 1, end, length);
 }
 
 int main()
 {
-    int data[] = {9,1,3,4,5,6};
+    int data[] = {9, 1, 3, 4, 5, 6};
     QuickSort(data, 0, 5, 6);
-    for(int i = 0; i < sizeof(data)/ sizeof(data[0]); i++){
+    for (int i = 0; i < sizeof(data) / sizeof(data[0]); i++)
+    {
         printf("%d ", data[i]);
     }
 }

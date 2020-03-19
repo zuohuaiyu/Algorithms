@@ -11,14 +11,14 @@ int minNumberInRotateArray(vector<int> numbers)
 {
     int len = numbers.size();
     int start = 0, end = len - 1;
-    while(start < end)
+    while (start < end)
     {
         int mid = (start + end) / 2;
-        if(numbers[mid] < numbers[end])
+        if (numbers[mid] < numbers[end])
             end = mid;
-        else if(numbers[mid] > numbers[end])
+        else if (numbers[mid] > numbers[end])
             start = mid + 1;
-        else if(numbers[mid] == numbers[end])
+        else if (numbers[mid] == numbers[end])
             --end;
     }
     return numbers[end];
@@ -26,7 +26,7 @@ int minNumberInRotateArray(vector<int> numbers)
 
 int main()
 {
-    int arr[] = {3,4,5,0,1,2};
+    int arr[] = {3, 4, 5, 0, 1, 2};
     vector<int> numbs(arr, arr + 6);
     int ans = minNumberInRotateArray(numbs);
     cout << ans << endl;
