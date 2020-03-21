@@ -88,6 +88,10 @@ ListNode *deleteNode(ListNode *head, ListNode *pToBeDelete)
 
 ListNode *creatList(int arr[], int len)
 {
+    if (len == 0)
+    {
+        return NULL;
+    }
     ListNode *p, *pre, *head;
     head = new ListNode;
     head->next = NULL;
