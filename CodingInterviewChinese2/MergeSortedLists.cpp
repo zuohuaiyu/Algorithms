@@ -5,7 +5,11 @@
         输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。
     
     思路：
-        从两个链表头结点开始比较，将小的结点
+        定义头结点
+        若 head1 指向的结点值 < head2 指向的结点值，则将 head1 链接到头结点的 next 位置
+        否则将 head2 链接到头结点的 next 位置
+        循环进行，直至 head1 或 head2 为 NULL
+        最后，将 head1 或 head2 中剩下的部分，链接到头结点后面
     
     功能测试：
         输入空的链表.
@@ -55,7 +59,8 @@ void printList(ListNode *head)
 
 ListNode *mergeLists(ListNode *head1, ListNode *head2)
 {
-    ListNode *mergedHead = NULL;
+    ListNode *head = new ListNode();
+    ListNode *resHead = head;
     if (head1 == NULL)
     {
         return head2;
@@ -64,65 +69,22 @@ ListNode *mergeLists(ListNode *head1, ListNode *head2)
     {
         return head1;
     }
-    if (head1->val < head2->val)
+    while (head1 != NULL && head2 != NULL)
     {
-        mergedHead = head1;
-        ListNode *preNode = head1;
-        head1 = head1->next;
-        while (head1 != NULL && head2 != NULL)
+        if (head1->val < head2->val)
         {
-            if (head1->val < head2->val)
-            {
-                preNode->next = head1;
-                preNode = preNode->next;
-                head1 = head1->next;
-            }
-            else
-            {
-                preNode->next = head2;
-                preNode = preNode->next;
-                head2 = head2->next;
-            }
+            head->next = head1;
+            head1 = head1->next;
         }
-        if (head1 == NULL)
+        else
         {
-            preNode->next = head2;
+            head->next = head2;
+            head2 = head2->next;
         }
-        else if (head2 == NULL)
-        {
-            preNode->next = head1;
-        }
+        head = head->next;
     }
-    else
-    {
-        mergedHead = head2;
-        ListNode *preNode = head2;
-        head2 = head2->next;
-        while (head1 != NULL && head2 != NULL)
-        {
-            if (head1->val < head2->val)
-            {
-                preNode->next = head1;
-                preNode = preNode->next;
-                head1 = head1->next;
-            }
-            else
-            {
-                preNode->next = head2;
-                preNode = preNode->next;
-                head2 = head2->next;
-            }
-        }
-        if (head1 == NULL)
-        {
-            preNode->next = head2;
-        }
-        else if (head2 == NULL)
-        {
-            preNode->next = head1;
-        }
-    }
-    return mergedHead;
+    head->next = head1 == NULL ? head2 : head1;
+    return resHead->next;
 }
 
 int main()
