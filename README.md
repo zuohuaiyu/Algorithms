@@ -1,7 +1,7 @@
 <span id="TOP"></span>
 - [LeetCode](#leetcode)
   - [Weekly Contest](#weekly-contest)
-- [剑指OFFER](#%e5%89%91%e6%8c%87offer)
+- [剑指OFFER](#剑指offer)
 - [Javascript related](#javascript-related)
 
 # LeetCode
@@ -13,6 +13,13 @@
 
 [🚀TOP](#TOP)
 # Javascript related
+[](Algorithm/JavascriptRelated/Currying.js)
+[](Algorithm/JavascriptRelated/DebounceThrottle.js)
+[](Algorithm/JavascriptRelated/DeepShallowCopy.js)
+[](Algorithm/JavascriptRelated/LazyLoad.js)
+[](Algorithm/JavascriptRelated/LRUCache.js)
+[](Algorithm/JavascriptRelated/MyCallApplyNewBind.js)
+[](Algorithm/JavascriptRelated/MyJSONP.js)
 
 [🚀TOP](#TOP)
 
