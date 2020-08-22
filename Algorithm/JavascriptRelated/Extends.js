@@ -2,7 +2,7 @@
  *  组合继承
  *  子类的构造函数重 Parent.call(this) 继承属性
  *  改变子类的原型为 new Parent() 继承函数
- * 
+ *
  * 优点: 构造函数可以传参，不会与父类引用属性共享，可以复用父类的函数
  * 缺点: 继承父类函数的时候调用了父类构造函数，导致子类的原型上多了不需要的父类属性，存在内存上的浪费。
  * */
@@ -48,22 +48,22 @@ console.log(child2);
 
 /**
  * ES6 class 继承
- * 
-*/
+ *
+ */
 
 class Parent3 {
-    constructor(vlaue){
-        this.name = "parent3";
-    }
-    getValue() {
-        console.log(this.name);
-    }
+  constructor(vlaue) {
+    this.name = "parent3";
+  }
+  getValue() {
+    console.log(this.name);
+  }
 }
 
 class Child3 extends Parent3 {
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 }
 
 let child3 = new Child3();
