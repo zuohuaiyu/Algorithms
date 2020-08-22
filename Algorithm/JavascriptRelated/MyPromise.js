@@ -201,11 +201,11 @@ MyPromise.race() = function (promises) {
     if (promises.length === 0) {
       resolve();
     } else {
-      let index = 0;
       for (let i = 0; i < promises.length; i++) {
         promises[i].then(
           (data) => {
             resolve(data);
+            return;
           },
           (reason) => {
             reject(reason);
