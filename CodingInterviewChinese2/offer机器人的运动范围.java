@@ -1,4 +1,4 @@
-package Practice.LeetCode;
+package Algorithms.CodingInterviewChinese2;
 
 import java.util.LinkedList;
 import java.util.Queue;
